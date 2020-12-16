@@ -1,18 +1,15 @@
 ---
 - hosts: lab-oss
-  
+  become: yes
   tasks:
-  network_connections:
-  - name: ens18
-    type: ethernet
-    ip:
-      route_metric4: 100
-      dhcp4: no
-      #dhcp4_send_hostname: no
-      gateway4: "{{ gateway }}"
-
-      dns: "{{ DNS }}"
-      dns_search: "{{ SEARCH }}"
-      address: "{{ IP }}"
-      prefix: "{{ prefix }}"
+    - name: Add an Ethernet connection with static IP configuration
+      community.general.nmcli:
+        conn_name: my-eth1
+        ifname: ens18
+        type: ethernet
+        ip4: "{{ ip }}"
+        gw4: "{{ gateway }}"
+        dns4: "{{ dns }}"
+        state: present
+        autoconnect: yes
       
