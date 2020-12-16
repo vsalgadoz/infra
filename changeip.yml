@@ -1,0 +1,18 @@
+---
+- hosts: lab-oss
+  
+  tasks:
+  network_connections:
+  - name: ens18
+    type: ethernet
+    ip:
+      route_metric4: 100
+      dhcp4: no
+      #dhcp4_send_hostname: no
+      gateway4: {{ gateway }}
+
+      dns: {{ DNS }}
+      dns_search: {{ SEARCH }}
+      address: {{ IP }}
+      prefix: 24
+      
