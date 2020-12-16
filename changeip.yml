@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: Add an Ethernet connection with static IP configuration
-      nmcli:
+      community.general.nmcli:
         conn_name: my-eth1
         ifname: ens18
         type: ethernet
