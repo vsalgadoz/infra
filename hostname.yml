@@ -1,0 +1,7 @@
+---
+- hosts: lab-oss
+  become: yes
+    
+  tasks:
+    - name: Set up a hostname
+      hostname: name={{ local_hostname }}
