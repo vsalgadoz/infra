@@ -1,0 +1,28 @@
+---
+- hosts: Linux
+  become: yes
+
+  tasks:
+    - name: Download repo-copr and copy to repos
+      get_url:
+        url: https://copr.fedorainfracloud.org/coprs/trasher/fusioninventory-agent/repo/epel-7/trasher-fusioninventory-agent-epel-7.repo
+        dest: /etc/yum.repos.d/
+    - name: Install fusioninventory-agent
+      yum:
+        name: fusioninventory-agent
+        state: present
+    - name: Install fusioninventory-agent-task-inventory
+      yum:
+        name: fusioninventory-agent-task-inventory
+        state: present
+    - name: change agent.cfg server
+      lineinfile:
+        path: "{{ fusioninventory_conf_dir }}/agent.cfg"
+        state: present
+        regexp: '#server = http://server.domain.com/glpi/plugins/fusioninventory/'
+        line: "server ={{ fusioninventory_server }}"
+    - name: Start fusioninventory-agent
+      service:
+        name: fusioninventory-agent
+        state: started
+        enabled: yes
