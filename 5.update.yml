@@ -1,5 +1,5 @@
 ---
-- hosts: lab-oss
+- hosts: servidores_python
   
   tasks:
   - name: Upgrade all packages
