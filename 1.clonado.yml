@@ -1,0 +1,34 @@
+---
+- hosts: Proxmox
+  tasks:
+    - name: Validar que no exista '{{ vname }}'
+      proxmox_kvm:
+        api_user: root@pam
+        api_password: RpcYoHi6Kb9y
+        api_host: 167.114.172.172
+        name: '{{ vname }}'
+        node: ns514447
+        state: current
+      register: result
+      ignore_errors: True
+              
+    - name: Clonar del source hacia '{{ vname }}'
+      proxmox_kvm:
+        api_user    : root@pam
+        api_password: RpcYoHi6Kb9y
+        api_host    : 167.114.172.172
+        clone       : '{{ source }}'   # The VM source
+        name        : '{{ vname }}'
+        node        : ns514447
+        storage     : local
+        format      : qcow2
+        timeout     : 500  # Note: The task can take a while. Adapt
+        
+    - name: Arrancar la maquina virtual recien creada '{{ vname }}'
+      proxmox_kvm:
+         api_user: root@pam
+         api_password: RpcYoHi6Kb9y
+         api_host: 167.114.172.172
+         name: '{{ vname }}'
+         node: ns514447
+         state      : started
