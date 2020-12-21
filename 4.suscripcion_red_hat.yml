@@ -1,0 +1,10 @@
+---
+- hosts: lab-oss
+  
+  tasks:
+  - name: Register as user (nameuser) with password (somepass) and auto-subscribe to available content.
+    redhat_subscription:
+      state: present
+      username: victor.salgado@opti.com.mx
+      password: Dickt0r2021.
+      autosubscribe: true

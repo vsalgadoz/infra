@@ -1,0 +1,9 @@
+---
+- hosts: lab-oss
+  
+  tasks:
+  - name: Upgrade all packages
+    yum:
+      name: '*'
+      state: latest
+      
