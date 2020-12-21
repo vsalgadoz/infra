@@ -1,5 +1,5 @@
 ---
-- hosts: python_vm
+- hosts: servidores_python
   
   tasks:
   - name: Register as user (nameuser) with password (somepass) and auto-subscribe to available content.
