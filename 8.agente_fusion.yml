@@ -6,7 +6,9 @@
     - name: Install epel-repo
       yum:
         name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-        state: present    
+        state: present
+    - name: Enable Codeready builder
+      command: subscription-manager repos --enable "codeready-builder-for-rhel-8-$(arch)-rpms"
     - name: Install fusioninventory-agent
       yum:
         name: fusioninventory-agent
