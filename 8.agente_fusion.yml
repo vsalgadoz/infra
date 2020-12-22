@@ -7,6 +7,8 @@
       get_url:
         url: https://copr.fedorainfracloud.org/coprs/trasher/fusioninventory-agent/repo/epel-7/trasher-fusioninventory-agent-epel-7.repo
         dest: /etc/yum.repos.d/
+    - name: Enable POwerTools Repository
+      command: dnf config-manager --set-enabled PowerTools      
     - name: Install fusioninventory-agent
       yum:
         name: fusioninventory-agent
