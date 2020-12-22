@@ -5,4 +5,6 @@
     - name: install insights-client
       yum:
         name: insights-client
-        state: present   
+        state: present
+    - name: Register to the Red Hat Access Insights Service
+      command: redhat-access-insights --register
