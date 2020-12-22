@@ -21,11 +21,6 @@
         state: present
         regexp: '#server = http://server.domain.com/glpi/plugins/fusioninventory/'
         line: "server ={{ fusioninventory_server }}"        
-    - name: Abrir puerto Agente
-      firewalld:
-        port: "{{ zabbix_port }}"
-        permanent: yes
-        state: enabled
     - name: Start fusioninventory-agent
       service:
         name: fusioninventory-agent
