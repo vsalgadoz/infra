@@ -1,4 +1,5 @@
-- hosts: Linux
+---
+- hosts: servidores_python
   become: yes
 
   tasks:
