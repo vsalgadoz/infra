@@ -7,4 +7,4 @@
         name: insights-client
         state: present
     - name: Register to the Red Hat Access Insights Service
-      command: redhat-access-insights --register
+      command: insights-client --register
