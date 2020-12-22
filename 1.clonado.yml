@@ -5,9 +5,9 @@
       proxmox_kvm:
         api_user: root@pam
         api_password: RpcYoHi6Kb9y
-        api_host: "{{ proxmox_server }}"
+        api_host: '{{ proxmox_server }}'
         name: '{{ vname }}'
-        node: "{{ proxmox_node }}"
+        node: '{{ proxmox_node }}'
         state: current
       register: result
       ignore_errors: True
@@ -16,10 +16,10 @@
       proxmox_kvm:
         api_user    : root@pam
         api_password: RpcYoHi6Kb9y
-        api_host    : "{{ proxmox_server }}"
+        api_host    : '{{ proxmox_server }}'
         clone       : '{{ source }}'   # The VM source
         name        : '{{ vname }}'
-        node        : "{{ proxmox_node }}"
+        node        : '{{ proxmox_node }}'
         storage     : local
         format      : qcow2
         timeout     : 500  # Note: The task can take a while. Adapt
