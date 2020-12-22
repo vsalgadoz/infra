@@ -28,7 +28,7 @@
       proxmox_kvm:
          api_user: root@pam
          api_password: RpcYoHi6Kb9y
-         api_host: 167.114.172.172
+         api_host: '{{ proxmox_server }}'
          name: '{{ vname }}'
-         node: ns514447
+         node: '{{ proxmox_node }}'
          state      : started
