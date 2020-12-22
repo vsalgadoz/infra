@@ -34,8 +34,9 @@
          state      : started
          
     - name: Cambiar nombre de servidor
-      command: ID=$(qm list | grep -Ei "${vnmame}" | awk '{print $1}') \
-               IF=$(qm guest exec ${ID} -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1) \
-               qm guest exec ${ID} -- sed -e 's/,qemu-exec,qemu-exec-status//g' /etc/sysconfig/qemu-ga \
-               qm guest exec ${ID} -- systemctl restart qemu-guest-agent
+      shell: | 
+        ID=$(qm list | grep -Ei "${vnmame}" | awk '{print $1}')
+        IF=$(qm guest exec ${ID} -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1)
+        qm guest exec ${ID} -- sed -e 's/,qemu-exec,qemu-exec-status//g' /etc/sysconfig/qemu-ga                              
+        qm guest exec ${ID} -- systemctl restart qemu-guest-agent
      
