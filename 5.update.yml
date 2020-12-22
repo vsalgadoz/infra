@@ -2,7 +2,7 @@
 - hosts: servidores_python
   
   tasks:
-  - name: Upgrade all packages
+  - name: Update all packages
     yum:
       name: '*'
       state: latest
