@@ -37,8 +37,9 @@
       shell: | 
         ID=$(qm list | grep -Ei "${vname}" | awk '{print $1}')
         IF=$(qm guest exec ${ID} -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1)
-        echo $ID
-        echo $IF
+        qm guest exec ${ID} -- sed -e 's/,qemu-exec,qemu-exec-status//g' /etc/sysconfig/qemu-ga
+        
+        
                                      
         
      
