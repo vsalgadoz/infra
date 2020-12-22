@@ -1,0 +1,12 @@
+---
+- hosts: lab-oss
+  
+  tasks:
+    - name: install insights-client
+      yum:
+        name: insights-client
+        state: present
+
+   - name: Register the insights client
+     insights_register:
+       state: present  
