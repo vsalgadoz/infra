@@ -48,6 +48,9 @@
     - name: Establecer Modo Estático
       shell: ID=$(qm list | grep -Ei "{{ vname }}" | awk '{print $1}'); IF=$(qm guest exec $ID -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1); qm guest exec $ID -- nmcli con mod $IF ipv4.dns  "{{ vmdnsname }}"
 
+    - name: Establecer Modo Estático
+      shell: ID=$(qm list | grep -Ei "{{ vname }}" | awk '{print $1}'); IF=$(qm guest exec $ID -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1); qm guest exec $ID -- nmcli con mod $IF ipv4.dns-search "{{ vmdomain }}"
+
 #   - name: Habilitar ejecución de comandos
  #     shell: ID=$(qm list | grep -Ei "{{ vname }}" | awk '{print $1}'); IF=$(qm guest exec $ID -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1); qm guest exec $ID -- sed -ie 's/,qemu-exec,qemu-exec-status//g' /etc/sysconfig/qemu-ga
       
