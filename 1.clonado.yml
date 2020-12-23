@@ -41,7 +41,9 @@
     
     - name: Establecer Gateway
       shell: ID=$(qm list | grep -Ei "{{ vname }}" | awk '{print $1}'); IF=$(qm guest exec $ID -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1); qm guest exec $ID -- nmcli con mod  $IF ipv4.gateway  "{{ vmgateway }}"
-      
+    
+    - name: Establecer Modo Estático
+      shell: ID=$(qm list | grep -Ei "{{ vname }}" | awk '{print $1}'); IF=$(qm guest exec $ID -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1); qm guest exec $ID -- nmcli con mod $IF ipv4.method manual
  #   - name: Habilitar ejecución de comandos
  #     shell: ID=$(qm list | grep -Ei "{{ vname }}" | awk '{print $1}'); IF=$(qm guest exec $ID -- nmcli -t device | jq -r '."out-data"' | grep -Ei "ethernet" | head -1 | cut -d ":" -f 1); qm guest exec $ID -- sed -ie 's/,qemu-exec,qemu-exec-status//g' /etc/sysconfig/qemu-ga
       
