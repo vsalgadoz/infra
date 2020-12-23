@@ -38,7 +38,7 @@
       
     - name: Reinciar Agente
       shell: ID=$(qm list | grep -Ei "{{ vname }}" | awk '{print $1}'); qm guest exec $ID -- kill -HUP $(pidof qemu-ga)
-      ignore_errors: True
+      
 
 
    
