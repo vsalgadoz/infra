@@ -3,7 +3,7 @@
   become: yes
 
   tasks:
-- name: Instalar python 36
+    - name: Instalar python 36
       yum:
         name: python36
         state: present
