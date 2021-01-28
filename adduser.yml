@@ -1,5 +1,5 @@
 - hosts: ad
-	  become: yes
+	become: yes
 	  
 	  tasks:
 	    - name: Validar que el usuario exista con la información completa
@@ -18,25 +18,3 @@
 	        country: "{{ pais }}"
 	        attributes:
 	          telephoneNumber: "{{ telefono }}"
-	
-
-	   - name: validar que el usuario este creado y usar las credenciales para crear el usuario
-	     community.windows.win_domain_user:
-	       name: "{{ nombre_usuario }}"
-	       firstname: "{{ nombre }}"
-	       surname: "{{ apellido }}"
-	       password: "{{ contraseña }}"
-	       state: present
-	       domain_username: "{{ usuario_admin }}"
-	       domain_password: "{{ contraseña_admin }}"
-	       domain_server: "{{ servidor_dominio }}"
-	
-
-	   - name: validar que el usuario este presente en la OU CN=grafanaUsers,OU=orgGroups,DC=OPTI,DC=CORP
-	     community.windows.win_domain_user:
-	       name: "{{ nombre_usuario }}"
-	       password: "{{ contraseña }}"
-	       state: present
-	       path: "{{ group_user_distinguishedName }}"
-	       groups:
-	         - towerUsers
