@@ -3,7 +3,7 @@
 
   tasks:
     - name: Validar que el usuario exista con la información completa 
-      community.windows.win_domain_user:
+        community.windows.win_domain_user:
         name: "{{ nombre_usuario }}"
         firstname: "{{ nombre }}"
         surname: "{{ apellido }}"
