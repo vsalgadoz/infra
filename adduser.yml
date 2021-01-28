@@ -4,43 +4,42 @@
   tasks:
     - name: Ensure user bob is present with address information
       community.windows.win_domain_user:
-      name: "{{ zabbix_port }}"user
-      firstname: "{{ nombre }}"
-      surname: "{{ apellido }}"
-      company: "{{ zabbix_port }}"BobCo
-      password: "{{ zabbix_port }}"B0bP4ssw0rd
-      state: present
-      groups:
-        - Domain Admins
-      street: "{{ zabbix_port }}"123 4th St.
-      city: "{{ zabbix_port }}"Sometown
-      state_province: "{{ zabbix_port }}"IN
-      postal_code: "{{ zabbix_port }}"12345
-      country: "{{ zabbix_port }}"US
-      attributes:
-        telephoneNumber: "{{ zabbix_port }}"555-123456
+        name: "{{ nombre_usuario }}"
+        firstname: "{{ nombre }}"
+        surname: "{{ apellido }}"
+        password: "{{ contraseña }}"
+        state: present
+        groups:
+          - Domain Admins
+        street: "{{ calle }}"
+        city: "{{ ciudad }}"
+        state_province: "{{ estado }}"
+        postal_code: "{{ cp }}"
+        country: "{{ pais }}"
+        attributes:
+          telephoneNumber: "{{ telefono }}"
 
   - name: Ensure user bob is created and use custom credentials to create the user
     community.windows.win_domain_user:
-      name: "{{ zabbix_port }}"bob
-      firstname: "{{ zabbix_port }}"Bob
-      surname: "{{ zabbix_port }}"Smith
-      password: "{{ zabbix_port }}"B0bP4ssw0rd
+      name: "{{ nombre_usuario }}"
+      firstname: "{{ nombre }}"
+      surname: "{{ apellido }}"
+      password: "{{ contraseña }}"
       state: present
-      domain_username: "{{ zabbix_port }}"DOMAIN\admin-account
-      domain_password: "{{ zabbix_port }}"SomePas2w0rd
-      domain_server: "{{ zabbix_port }}"domain@DOMAIN.COM
+      domain_username: "{{ usuario_admin }}"
+      domain_password: "{{ contraseña_admin }}"
+      domain_server: "{{ servidor_dominio }}"
 
   - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
     community.windows.win_domain_user:
-      name: "{{ zabbix_port }}"bob
-      password: "{{ zabbix_port }}"B0bP4ssw0rd
+      name: "{{ nombre_usuario }}"
+      password: "{{ contraseña }}"
       state: present
-      path: "{{ zabbix_port }}"ou=test,dc=domain,dc=local
+      path: "{{ distinguishedName }}"
       groups:
       - Domain Admins
 
   - name: Ensure user bob is absent
     community.windows.win_domain_user:
-      name: "{{ zabbix_port }}"bob
+      name: "{{ nombre_usuario }}"bob
       state: absent
