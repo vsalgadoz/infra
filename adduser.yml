@@ -1,7 +1,8 @@
 - hosts: ad
-  become: yes
-
-  tasks:
-    - name: Validar que el usuario exista con la información completa 
-        ansible.windows.win_user
-          name: "{{ nombreusuario }}"      
+- name: Ensure user bob is present
+  ansible.windows.win_user:
+    name: bob
+    password: B0bP4ssw0rd
+    state: present
+    groups:
+      - Users    
