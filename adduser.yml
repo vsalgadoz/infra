@@ -2,7 +2,7 @@
   become: yes
   
   tasks:
-    - name: Ensure user bob is present with address information
+    - name: Validar que el usuario exista con la información completa
       community.windows.win_domain_user:
         name: "{{ nombre_usuario }}"
         firstname: "{{ nombre }}"
@@ -19,7 +19,7 @@
         attributes:
           telephoneNumber: "{{ telefono }}"
 
-  - name: Ensure user bob is created and use custom credentials to create the user
+  - name: validar que el usuario este creado y usar las credenciales para crear el usuario
     community.windows.win_domain_user:
       name: "{{ nombre_usuario }}"
       firstname: "{{ nombre }}"
@@ -30,7 +30,7 @@
       domain_password: "{{ contraseña_admin }}"
       domain_server: "{{ servidor_dominio }}"
 
-  - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
+  - name: validar que el usuario este presente en la OU CN=grafanaUsers,OU=orgGroups,DC=OPTI,DC=CORP
     community.windows.win_domain_user:
       name: "{{ nombre_usuario }}"
       password: "{{ contraseña }}"
