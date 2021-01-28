@@ -1,5 +1,5 @@
 - hosts: ad
-    - name= Ensure user bob is present
+    - name: Ensure user bob is present
       ansible.windows.win_user
-        name= "{{ nombreusuario }}"
+        name: "{{ nombreusuario }}"
         
