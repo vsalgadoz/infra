@@ -1,5 +1,5 @@
 - hosts: ad
-    - name: Ensure user bob is present
+    - name= Ensure user bob is present
       ansible.windows.win_user
         name: bob
         password: B0bP4ssw0rd
