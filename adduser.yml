@@ -1,42 +1,46 @@
-- name: Ensure user bob is present with address information
-  community.windows.win_domain_user:
-    name: bob
-    firstname: Bob
-    surname: Smith
-    company: BobCo
-    password: B0bP4ssw0rd
-    state: present
-    groups:
+- hosts: ad
+  become: yes
+  
+  tasks:
+    - name: Ensure user bob is present with address information
+      community.windows.win_domain_user:
+      name: "{{ zabbix_port }}"user
+      firstname: "{{ nombre }}"
+      surname: "{{ apellido }}"
+      company: "{{ zabbix_port }}"BobCo
+      password: "{{ zabbix_port }}"B0bP4ssw0rd
+      state: present
+      groups:
+        - Domain Admins
+      street: "{{ zabbix_port }}"123 4th St.
+      city: "{{ zabbix_port }}"Sometown
+      state_province: "{{ zabbix_port }}"IN
+      postal_code: "{{ zabbix_port }}"12345
+      country: "{{ zabbix_port }}"US
+      attributes:
+        telephoneNumber: "{{ zabbix_port }}"555-123456
+
+  - name: Ensure user bob is created and use custom credentials to create the user
+    community.windows.win_domain_user:
+      name: "{{ zabbix_port }}"bob
+      firstname: "{{ zabbix_port }}"Bob
+      surname: "{{ zabbix_port }}"Smith
+      password: "{{ zabbix_port }}"B0bP4ssw0rd
+      state: present
+      domain_username: "{{ zabbix_port }}"DOMAIN\admin-account
+      domain_password: "{{ zabbix_port }}"SomePas2w0rd
+      domain_server: "{{ zabbix_port }}"domain@DOMAIN.COM
+
+  - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
+    community.windows.win_domain_user:
+      name: "{{ zabbix_port }}"bob
+      password: "{{ zabbix_port }}"B0bP4ssw0rd
+      state: present
+      path: "{{ zabbix_port }}"ou=test,dc=domain,dc=local
+      groups:
       - Domain Admins
-    street: 123 4th St.
-    city: Sometown
-    state_province: IN
-    postal_code: 12345
-    country: US
-    attributes:
-      telephoneNumber: 555-123456
 
-- name: Ensure user bob is created and use custom credentials to create the user
-  community.windows.win_domain_user:
-    name: bob
-    firstname: Bob
-    surname: Smith
-    password: B0bP4ssw0rd
-    state: present
-    domain_username: DOMAIN\admin-account
-    domain_password: SomePas2w0rd
-    domain_server: domain@DOMAIN.COM
-
-- name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
-  community.windows.win_domain_user:
-    name: bob
-    password: B0bP4ssw0rd
-    state: present
-    path: ou=test,dc=domain,dc=local
-    groups:
-      - Domain Admins
-
-- name: Ensure user bob is absent
-  community.windows.win_domain_user:
-    name: bob
-    state: absent
+  - name: Ensure user bob is absent
+    community.windows.win_domain_user:
+      name: "{{ zabbix_port }}"bob
+      state: absent
