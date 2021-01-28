@@ -4,17 +4,17 @@
   tasks:
     - name: Validar que el usuario exista con la información completa 
         community.windows.win_domain_user
-        name: "{{ nombre_usuario }}"
-        firstname: "{{ nombre }}"
-        surname: "{{ apellido }}"
-        password: "{{ contraseña }}"
-        state: present
-        groups:
-          - towerUsers
-        street: "{{ calle }}"
-        city: "{{ ciudad }}"
-        state_province: "{{ estado }}"
-        postal_code: "{{ cp }}"
-        country: "{{ pais }}"
-        attributes:
-          telephoneNumber: "{{ telefono }}"
+          name: "{{ nombre_usuario }}"
+          firstname: "{{ nombre }}"
+          surname: "{{ apellido }}"
+          password: "{{ contraseña }}"
+          state: present
+          groups:
+            - towerUsers
+          street: "{{ calle }}"
+          city: "{{ ciudad }}"
+          state_province: "{{ estado }}"
+          postal_code: "{{ cp }}"
+          country: "{{ pais }}"
+          attributes:
+            telephoneNumber: "{{ telefono }}"
