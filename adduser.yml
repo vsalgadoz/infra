@@ -10,7 +10,7 @@
         password: "{{ contraseña }}"
         state: present
         groups:
-          - Domain Admins
+          - towerUsers
         street: "{{ calle }}"
         city: "{{ ciudad }}"
         state_province: "{{ estado }}"
