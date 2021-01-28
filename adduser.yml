@@ -3,5 +3,5 @@
 
   tasks:
     - name: Validar que el usuario exista con la información completa 
-        community.windows.win_domain_user
-          name: {{ nombreusuario }}      
+        ansible.windows.win_user
+          name: "{{ nombreusuario }}"      
