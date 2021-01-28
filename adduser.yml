@@ -35,11 +35,8 @@
       name: "{{ nombre_usuario }}"
       password: "{{ contraseña }}"
       state: present
-      path: "{{ distinguishedName }}"
+      path: "{{ group_user_distinguishedName }}"
       groups:
-      - Domain Admins
+      - towerUsers
 
-  - name: Ensure user bob is absent
-    community.windows.win_domain_user:
-      name: "{{ nombre_usuario }}"bob
-      state: absent
+  
