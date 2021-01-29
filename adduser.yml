@@ -1,1 +1,2 @@
-- hosts: ad    
+- hosts: ad
+  become: yes 
