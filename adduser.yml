@@ -1,11 +1,16 @@
-- hosts: ad
-   - name: usar las credenciales para crear el usuario
-     community.windows.win_domain_user:
-       name: "{{ nombre_usuario }}"
-       firstname: "{{ nombre }}"
-       surname: "{{ apellido }}"
-       password: "{{ contraseña }}"
-       state: present
-       domain_username: "{{ usuario_admin }}"
-       domain_password: "{{ contraseña_admin }}"
-       domain_server: "{{ servidor_dominio }}"
+- hosts: adservers
+  gather_facts: no
+  tasks:
+  - name: Checking connection to {{ adservers }}
+    win_ping:
+
+  - name: usar las credenciales para crear el usuario
+    community.windows.win_domain_user:
+      name = {{ nombre_usuario }}
+      firstname = {{ nombre }}
+      surname = {{ apellido }}
+      password = {{ contraseña }}
+      state = present
+      domain_username = {{ usuario_admin }}
+      domain_password = {{ contraseña_admin }}
+      domain_server = {{ servidor_dominio }}
