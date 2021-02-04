@@ -6,7 +6,7 @@
 
   - name: usar las credenciales para crear el usuario
     community.windows.win_domain_user:
-      name = {{ nombre_usuario }}
+      name = {{ nombreusuario }}
       firstname = {{ nombre }}
       surname = {{ apellido }}
       password = {{ contraseña }}
