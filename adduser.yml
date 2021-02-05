@@ -1,4 +1,4 @@
-----
+---
 - hosts: adservers
   gather_facts: no
   tasks:
