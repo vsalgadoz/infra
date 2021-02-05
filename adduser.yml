@@ -1,16 +1,26 @@
+----
 - hosts: adservers
   gather_facts: no
   tasks:
   - name: Checking connection to {{ adservers }}
     win_ping:
+  - name: Crear cuenta usuario
+    win_domain_user:
+      name: usertest
+      firstname: User
+      surname: Test
+      password: 0pt12019.
+      state: present
+      domain_username: OPTI\Administrator
+      domain_password: 0pt12019.
 
-  - name: usar las credenciales para crear el usuario
-    community.windows.win_domain_user:
-      name = {{ nombreusuario }}
-      firstname = {{ nombre }}
-      surname = {{ apellido }}
-      password = {{ contraseña }}
-      state = present
-      domain_username = {{ usuario_admin }}
-      domain_password = {{ contraseña_admin }}
-      domain_server = {{ servidor_dominio }}
+  - name: Asignar grupo al usuario en CN=towerUsers,OU=orgGroups,DC=OPTI,DC=CORP
+    win_domain_user:
+      name: usertest
+      password: 0pt12019.
+      state: present
+      path: CN=towerUsers,OU=orgGroups,DC=OPTI,DC=CORP
+      groups:
+        - towerUsers
+        - glpiUsers
+        - zimbraUsers
