@@ -14,12 +14,11 @@
       domain_username: OPTI\Administrator
       domain_password: 0pt12019.
 
-  - name: Asignar grupo al usuario en CN=towerUsers,OU=orgGroups,DC=OPTI,DC=CORP
+  - name: Asignar grupos al usuario nuevo
     win_domain_user:
       name: usertest
       password: 0pt12019.
       state: present
-      path: CN=towerUsers,OU=orgGroups,DC=OPTI,DC=CORP
       groups:
         - towerUsers
         - glpiUsers
