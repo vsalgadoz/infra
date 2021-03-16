@@ -5,6 +5,6 @@
   - name: Register server to Red Hat.
     redhat_subscription:
       state: present
-      username: victor.salgado@opti.com.mx
-      password: Dickt0r2021.
+      username: {{ username }}
+      password: {{ password }}
       autosubscribe: true
