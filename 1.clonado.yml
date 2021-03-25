@@ -24,9 +24,9 @@
         format      : qcow2
         timeout     : 500  # Note: The task can take a while. Adapt
         
-    - name: Espera de inicio
+    - name: Pausa de 30 seg. en lo que se crea la MV
       pause:
-        seconds: 10
+        seconds: 30
         
     - name: Arrancar la maquina virtual recien creada '{{ vname }}'
       proxmox_kvm:
@@ -36,6 +36,10 @@
          name: '{{ vname }}'
          node: '{{ proxmox_node }}'
          state      : started
+         
+    - name: Pausa de 30 segundos para que terminen de cargar los servicios
+      pause:
+        seconds: 30
          
     - name: Cambiar nombre de host
       shell: ID=$(qm list | grep -Ei "{{ vname }}" | awk '{print $1}'); qm guest exec  $ID -- hostnamectl set-hostname  "{{ vmhostname }}" 
