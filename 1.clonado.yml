@@ -3,8 +3,8 @@
   tasks:
     - name: Validar que no exista '{{ vname }}'
       proxmox_kvm:
-        api_user: "{{ user }}"
-        api_password: "{{ password }}"
+        api_user: root@pam
+        api_password: eHZUHHkJq0ntoju0
         api_host: '{{ proxmox_server }}'
         name: '{{ vname }}'
         node: '{{ proxmox_node }}'
