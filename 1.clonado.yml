@@ -3,8 +3,8 @@
   tasks:
     - name: Validar que no exista '{{ vname }}'
       proxmox_kvm:
-        api_user: root@pam
-        api_password: RpcYoHi6Kb9y
+        api_user: "{ user }"
+        api_password: "{ password }"
         api_host: '{{ proxmox_server }}'
         name: '{{ vname }}'
         node: '{{ proxmox_node }}'
@@ -14,8 +14,8 @@
               
     - name: Clonar del source hacia '{{ vname }}'
       proxmox_kvm:
-        api_user    : root@pam
-        api_password: RpcYoHi6Kb9y
+        api_user    : "{ user }"
+        api_password: "{ password }"
         api_host    : '{{ proxmox_server }}'
         clone       : '{{ source }}'   # The VM source
         name        : '{{ vname }}'
@@ -26,8 +26,8 @@
         
     - name: Arrancar la maquina virtual recien creada '{{ vname }}'
       proxmox_kvm:
-         api_user: root@pam
-         api_password: RpcYoHi6Kb9y
+         api_user: "{ user }"
+         api_password: "{ password }"
          api_host: '{{ proxmox_server }}'
          name: '{{ vname }}'
          node: '{{ proxmox_node }}'
