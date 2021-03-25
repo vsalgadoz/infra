@@ -24,6 +24,10 @@
         format      : qcow2
         timeout     : 500  # Note: The task can take a while. Adapt
         
+    - name: Espera de inicio
+      pause:
+        seconds: 10
+        
     - name: Arrancar la maquina virtual recien creada '{{ vname }}'
       proxmox_kvm:
          api_user: "{{ user }}"
