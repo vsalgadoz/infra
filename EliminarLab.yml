@@ -1,0 +1,20 @@
+---
+- hosts: Proxmox
+  tasks:
+    - name: Detener MV
+      proxmox_kvm:
+        api_user: "{{ user }}"
+        api_password: "{{ password }}"
+        api_host: '{{ proxmox_server }}'
+        name: '{{ vname }}'
+        node: '{{ proxmox_node }}'
+        state: stopped
+        
+    - name: Borrar MV
+      proxmox_kvm:
+        api_user: "{{ user }}"
+        api_password: "{{ password }}"
+        api_host: '{{ proxmox_server }}'
+        name: '{{ vname }}'
+        node: '{{ proxmox_node }}'
+        state: absent
