@@ -11,6 +11,8 @@
       yum:
         name: yum-utils
         state: present
+    - name: Habilitar repo CodeReady
+      command: yum-config-manager --enable codeready-builder-for-rhel-8-x86_64-rpms     
     - name: Install fusioninventory-agent
       yum:
         name: fusioninventory-agent
